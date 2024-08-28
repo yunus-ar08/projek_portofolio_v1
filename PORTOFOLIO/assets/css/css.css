@@ -1,0 +1,73 @@
+.icon-skill {
+    justify-content: center;
+    background-color: #ffffff;
+    /* Warna latar untuk kotak */
+    padding: 30px;
+    border-radius: 10px;
+    /* Sudut melengkung */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Bayangan kotak */
+    text-align: center;
+    max-width: 250px;
+    /* Lebar maksimum kotak */
+    margin: 0 auto;
+    /* Agar kotak berada di tengah */
+    position: relative;
+    left: 300px;
+    top: 30px;
+    /* Posisi relatif, geser ke kiri */
+}
+
+.icon-title h1 {
+    font-size: 24px;
+    /* Ukuran font untuk judul */
+    margin-bottom: 20px;
+    /* Jarak bawah judul dengan ikon */
+    color: #333;
+    /* Warna teks judul */
+}
+
+.icon-title h2 {
+    font-size: 20px;
+    /* Ukuran font untuk subjudul */
+    margin-bottom: 10px;
+    /* Jarak bawah subjudul dengan ikon */
+    font-weight: 600;
+    /* Ketebalan teks */
+    color: #ffffff;
+    /* Warna teks subjudul */
+    background-color: #575554;
+    /* Warna latar subjudul */
+    padding: 5px;
+    /* Padding di sekitar teks subjudul */
+    border-radius: 5px;
+    /* Sudut melengkung pada subjudul */
+}
+
+.img-icon-skill {
+    display: flex;
+    justify-content: center;
+    /* Menyusun ikon di tengah */
+    gap: 30px;
+    /* Jarak antar ikon */
+    flex-wrap: wrap;
+    /* Membuat ikon terbungkus jika melebihi lebar kotak */
+}
+
+.img-icon-skill img {
+    width: 30px !important;
+    /* Lebar gambar */
+    height: 30px !important;
+    /* Tinggi gambar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Bayangan pada ikon */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Efek transisi untuk hover */
+}
+
+.img-icon-skill img:hover {
+    transform: scale(1.2);
+    /* Membesarkan ikon saat dihover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Menambahkan bayangan pada ikon */
+}

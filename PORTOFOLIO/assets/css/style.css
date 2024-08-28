@@ -1,0 +1,1348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Menghilangkan scrollbar untuk seluruh halaman */
+/* Menyembunyikan scrollbar di WebKit */
+::-webkit-scrollbar {
+    display: none;
+    /* atau gunakan width: 0; */
+}
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: white;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    position: absolute;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    left: 500px;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-weight: 550;
+    font-size: 17px;
+    padding: 20px 0 ;
+    /* Menyediakan ruang untuk garis bawah */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
+    height: 3px;
+    background-color: #eea810;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+
+
+
+.menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.menu-icon span {
+    background: #333;
+    border-radius: 5px;
+    width: 100%;
+    height: 3px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Menambahkan animasi transformasi untuk ikon ketika diaktifkan */
+.menu-icon.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mengubah warna ikon saat hover */
+.menu-icon:hover span {
+    background-color: #eea810;
+}
+
+/* Gaya untuk tampilan desktop */
+.nav-links {
+    position: absolute;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: none;
+    left: 500px;
+    /* Sesuaikan posisi menu di desktop */
+}
+
+/* Gaya untuk tampilan mobile */
+@media screen and (max-width: 768px) {
+.nav-links {
+        display: none;
+        flex-direction: column;
+        left: 20px;
+        top: 60px;
+        background-color: rgba(252, 244, 244, 0.849);
+        width: 220px;
+        padding: 15px;
+        border-radius: 10px;
+        z-index: 1001;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(100px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.137);
+        position: fixed;
+        left: 30px;
+    }
+
+    .nav-links.show {
+        display: flex;
+        /* Tampilkan menu saat ikon di-klik di mobile */
+    }
+
+    .nav-links li {
+        margin: -10px 0;
+        /* Tambahkan jarak antara item menu */
+        opacity: 0;
+        /* Mulai dengan opacity 0 di mobile */
+        transform: translateY(-10px);
+        /* Geser sedikit ke atas untuk efek masuk */
+        animation: slideIn 0.5s forwards;
+        /* Animasi geser ke bawah di mobile */
+    }
+
+    /* Tambahkan delay berbeda untuk setiap item di mobile */
+    .nav-links li:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .nav-links li:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .nav-links li:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .nav-links li:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .nav-links.show {
+        display: flex;
+        /* Tampilkan menu saat ikon di-klik di mobile */
+    }
+
+    .nav-links li {
+        opacity: 0;
+        /* Mulai dengan opacity 0 di mobile */
+        transform: translateY(-20px);
+        /* Geser ke atas di mobile */
+        animation: slideIn 0.5s forwards;
+        /* Animasi geser ke bawah di mobile */
+    }
+
+    /* Tambahkan delay berbeda untuk setiap item di mobile */
+    .nav-links li:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .nav-links li:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .nav-links li:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .nav-links li:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+}
+
+/* Definisi animasi slide in */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Query untuk Perangkat Mobile */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: flex;
+        /* Tampilkan ikon menu di mobile */
+    }
+}
+
+
+
+
+
+
+/* Default state, before the element is in view */
+.scroll-kanan {
+    opacity: 0;
+    transform: translateX(100px);
+    /* Element starts 100px to the right */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* When the element is in view, it will slide into place */
+.scroll-kanan.in-view {
+    opacity: 1;
+    transform: translateX(0);
+    /* Element slides to its original position */
+}
+
+/* Default state, before the element is in view */
+.scroll-kiri {
+    opacity: 0;
+    transform: translateX(-100px);
+    /* Element starts 100px to the left */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* When the element is in view, it will slide into place */
+.scroll-kiri.in-view {
+    opacity: 1;
+    transform: translateX(0);
+    /* Element slides to its original position */
+}
+
+
+/*=========================*/
+
+
+.section-1 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.section-1 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.section-1 .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-1 .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.section-1 .content img {
+    width: 350px;
+    height: auto;
+    position: relative;
+    left: 300px;
+    margin-top: 150px;
+}
+
+.section-1 .content p {
+    font-size: 50px;
+    margin: 10px 0;
+    color: #eea810;
+    position: relative;
+    top: -300px;
+    left: -250px;
+    font-family: "Dancing Script", cursive;
+}
+
+.section-1 .content h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    color: #333;
+    position: relative;
+    top: -300px;
+    left: -250px;
+}
+
+.section-1 .content h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #666;
+    position: relative;
+    left: 20px;
+    top: -220px;
+}
+
+.section-1 .button {
+    position: relative;
+    top: -300px;
+    left: -300px;
+
+}
+
+.section-1 .button a {
+    padding: 10px 30px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.section-1 .button a:hover {
+    background-color: #555;
+}
+
+/*===============*/
+/* Mobile version */
+@media (max-width: 768px) {
+    .section-1 {
+        height: 80vh;
+        /* Allows section height to adjust based on content */
+    }
+
+    .section-1 .bg img {
+        object-fit: cover;
+    }
+
+    .section-1 .content img {
+        width: 200px;
+        /* Adjust image size for smaller screens */
+        height: auto;
+        left: 0px;
+        /* Center the image */
+        margin-top: -30px;
+        /* Reduce margin for better spacing */
+    }
+
+    .section-1 .content p {
+        font-size: 40px;
+        top: -15px;
+        /* Adjust position for smaller screens */
+        left: 0;
+        margin-top: 20px;
+        font-family: "Dancing Script", cursive;
+    }
+
+    .section-1 .content h1 {
+        font-size: 2rem;
+        top: -20px;
+        /* Adjust position for smaller screens */
+        left: 0;
+    }
+
+    .section-1 .content h2 {
+        font-size: 1.25rem;
+        left: 0;
+        top: 0;
+        margin-top: 50px;
+    }
+
+    .section-1 .button {
+        top: 0;
+        /* Adjust position for smaller screens */
+        left: 0;
+        margin-top: -90px;
+        text-align: center;
+        /* Center the button */
+    }
+
+    .section-1 .button a {
+        padding: 10px 15px;
+        /* Adjust button padding for smaller screens */
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*=========================*/
+/* Section 2 Styles */
+/*=========================*/
+
+.section-2 {
+    position: relative;
+    width: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+}
+
+.section-2 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.section-2 .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-2 .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    /* Add some padding for better spacing */
+}
+
+.section-2 .content img {
+    width: 600px;
+    /* Adjust size for different visual emphasis */
+    height: auto;
+    position: relative;
+    left: -350px;
+    top: 150px;
+    margin: 0 auto;
+    /* Center the image */
+}
+
+.section-2 .content p {
+    /* Adjust font size */
+    margin: 20px 0;
+    /* Adjust margin for spacing */
+    color: #eea810;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    position: relative;
+    left: 50px;
+    top: -350px;
+}
+
+.texs-about {
+    width: 512px;
+    /* Ukuran persegi */
+    height: 200px;
+    background-color: transparent;
+    /* Warna latar belakang */
+    color: rgb(77, 76, 76);
+    /* Warna teks */
+    display: flex;
+    flex-direction: column;
+    /* Pastikan teks berada dalam kolom */
+    align-items: center;
+    /* Untuk pusat secara horizontal */
+    justify-content: center;
+    /* Untuk pusat secara vertikal */
+    font-size: 20px;
+    /* Ukuran teks */
+    text-align: justify;
+    /* Perataan teks justify */
+    border-radius: 8px;
+    box-sizing: border-box;
+    position: relative;
+    left: 250px;
+    top: -350px;
+}
+.texs-about h5{
+    font-size: 30px;
+    position: relative;
+    left: -20px;
+}
+
+
+
+
+.section-2 .content h1 {
+    font-size: 2rem;
+    /* Adjust font size */
+    margin: 10px 0;
+    /* Adjust margin for spacing */
+    color: #333;
+}
+
+.section-2 .content h2 {
+    font-size: 1.25rem;
+    /* Adjust font size */
+    margin: 10px 0;
+    /* Adjust margin for spacing */
+    color: #666;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .section-2 {
+        height: 100vh;
+        /* Biarkan tinggi menyesuaikan konten */
+        padding: 20px;
+        /* Tambahkan padding agar tidak terlalu rapat */
+    }
+
+    .section-2 .bg {
+        display: none;
+        /* Sembunyikan background gambar untuk mengurangi loading di mobile */
+    }
+
+    .section-2 .content {
+        padding: 10px;
+        /* Kurangi padding agar lebih rapi di layar kecil */
+    }
+
+    .section-2 .content img {
+        width: 400px;
+        /* Buat gambar mengisi lebar layar */
+        height: auto;
+        position: static;
+        /* Hapus positioning relatif */
+        margin: 0 auto 20px auto;
+        /* Pusatkan gambar dengan margin bawah */
+        left: 0;
+        top: 0;
+    }
+
+    .section-2 .content p {
+        font-size: 24px;
+        /* Perkecil ukuran font */
+        left: 0;
+        top: -70px;
+        margin: 20px 0;
+        text-align: center;
+        /* Pusatkan teks */
+    }
+
+    .texs-about {
+        width: 250px;
+        /* Buat elemen mengisi lebar layar */
+        height: 70;
+        /* Biarkan tinggi menyesuaikan konten */
+        font-size: 10px;
+        /* Perkecil ukuran teks */
+        left: 70px;
+        top: -100px;
+        margin-top: 20px;
+        /* Tambahkan sedikit jarak di atas */
+        /* Tambahkan padding agar tidak terlalu rapat */
+    }
+
+    .texs-about h5 {
+        font-size: 15px;
+        /* Perkecil ukuran font */
+        left: 0;
+        text-align: center;
+        /* Pusatkan teks */
+    }
+
+    .section-2 .content h1 {
+        font-size: 1.5rem;
+        /* Perkecil ukuran font */
+        margin: 10px 0;
+    }
+
+    .section-2 .content h2 {
+        font-size: 1rem;
+        /* Perkecil ukuran font */
+        margin: 10px 0;
+    }
+}
+
+
+/*=========================*/
+/*=========================*/
+/* Section 3 Styles */
+/*=========================*/
+
+.section-3 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.section-3 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.section-3 .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-3 .content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.section-3 .content img {
+    width: 500px;
+    height: auto;
+    position: relative;
+    left: 500px;
+    top: 0;
+    margin: 0;
+}
+
+.section-3 .content>.scroll-kiri>img:nth-child(1) {
+    width: 100px;
+    /* Ukuran logo SMK */
+    height: auto;
+    position: relative;
+    left: 50px;
+    /* Posisi awal */
+    top: 190px;
+    /* Sesuaikan posisi vertikal */
+    /* Spasi antar gambar */
+}
+
+.section-3 .content>.scroll-kiri>img:nth-child(2) {
+    width: 500px;
+    /* Ukuran gambar sekolah */
+    height: auto;
+    position: relative;
+    left: 600px;
+    /* Geser gambar ke kanan */
+    top: -50px;
+    /* Sesuaikan posisi vertikal */
+}
+
+.section-3 .content p {
+    margin: 0 0 20px 0;
+    color: #eea810;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    position: relative;
+    left: -500px;
+}
+
+.text-education {
+    height: 200px;
+    width: 600px;
+    background-color: transparent;
+    color: rgb(77, 76, 76);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: justify;
+    border-radius: 8px;
+    box-sizing: border-box;
+    position: relative;
+    left: -500px;
+    margin-left: 20px;
+    padding: 100px;
+    top: -60px;
+}
+
+
+.text-education h5 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    top: 10px;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .section-3 {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+        height: auto;
+    }
+
+    .section-3 .bg {
+        height: 50vh;
+    }
+
+    .section-3 .content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .section-3 .content img {
+        width: 80%;
+        height: auto;
+        left: 0;
+        top: 0;
+        margin-bottom: 20px;
+    }
+
+    .section-3 .content>.scroll-kiri>img:nth-child(1) {
+        width: 60px;
+        height: auto;
+        left: 115px;
+        top: 200px;
+    }
+
+    .section-3 .content>.scroll-kiri>img:nth-child(2) {
+        width: 80%;
+        left: 30px;
+        top: -100px;
+        margin-bottom: 20px;
+    }
+
+    .section-3 .content p {
+        font-size: 24px;
+        left: 8px;
+        margin: 0 0 10px 0;
+        top: -120px;
+        text-align: center;
+    }
+
+    .text-education {
+        width: 90%;
+        font-size: 16px;
+        left: 17px;
+        padding: 20px;
+        margin: 0;
+        top: -100px;
+        text-align: center;
+    }
+
+    .text-education h5 {
+        font-size: 18px;
+        top: 0;
+    }
+}
+
+
+/*=========================*/
+/* Section 4 Styles */
+/*=========================*/
+
+.section-4 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.section-4 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.section-4 .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-4 .content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.section-4 .content img {
+    width: 500px;
+    height: auto;
+    position: relative;
+    left: 500px;
+    top: 0;
+    margin: 0;
+}
+
+
+
+.section-4 .content>.scroll-kiri>img:nth-child(1) {
+    width: 700px;
+    height: auto;
+    position: relative;
+    left: 500px;
+    top: -50px;
+}
+
+.section-4 .content p {
+    margin: 0 0 20px 0;
+    color: #eea810;
+    /* Ganti warna teks */
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    position: relative;
+    left: -700px;
+}
+
+.text-experience {
+    height: 200px;
+    width: 600px;
+    background-color: transparent;
+    color: rgb(77, 76, 76);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: justify;
+    border-radius: 8px;
+    box-sizing: border-box;
+    position: relative;
+    left: -840px;
+    margin-left: 20px;
+    padding: 100px;
+    top: -60px;
+}
+
+.text-experience h5 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    top: 10px;
+}
+
+@media (max-width: 768px) {
+    .section-4 {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .section-4 .content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .section-4 .content img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+        margin-bottom: 20px;
+    }
+
+    .section-4 .content>.scroll-kiri>img:nth-child(1) {
+        width: 100%;
+        height: auto;
+        left: 0;
+        top: 0;
+    }
+
+    .section-4 .content p {
+        font-size: 24px;
+        left: 0;
+        text-align: center;
+    }
+
+    .text-experience {
+        width: 100%;
+        left: 0;
+        padding: 20px;
+        top: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .text-experience h5{
+    font-size: 13.20px;
+    font-weight: 600;
+    top: -70px;
+    }
+}
+
+
+/*=========================*/
+/* Section 5 Styles */
+/*=========================*/
+
+.section-5 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.section-5 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.section-5 .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-5 .content-wrapper {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.section-5 .section-title {
+    font-size: 40px;
+    color: #eea810;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.section-5 .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.section-5 .content img {
+    width: 330px;
+    height: auto;
+    margin: 20px;
+}
+
+.section-5 .content p {
+    margin: 10px 0;
+    color: #eea810;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}
+
+.section-5 .content .year {
+    display: block;
+    font-size: 18px;
+    color: #999;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .section-5 {
+        height: auto;
+    }
+    .section-5 .section-title {
+        font-size: 32px;
+        position: relative;
+        top: 30px;
+    }
+
+    .section-5 .content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        left: -25px;
+        padding: 10px;
+    }
+
+    .section-5 .content img {
+        width: 100%;
+        max-width: 300px;
+        
+    }
+
+    .section-5 .content p {
+        font-size: 18px;
+        margin-bottom: 10px;
+        position: relative;
+        justify-content: center;
+        left: 25px;
+    }
+
+    .section-5 .content span{
+        position: relative;
+        left: 25px;
+    }
+}
+
+
+
+/*=========================*/
+/* Section 6 Styles */
+/*=========================*/
+
+.section-6 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px 20px;
+    /* Menambahkan padding untuk memberikan ruang di atas dan bawah */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    /* Memberikan warna latar yang lebih cerah */
+    overflow: hidden;
+}
+
+.section-6 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Menyimpan gambar latar di belakang konten */
+    opacity: 0.2;
+    /* Memberikan efek transparan pada background */
+}
+
+.section-6 .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-6 .content-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+    top: 300px;
+    left: -300px;
+}
+
+.section-6 .section-title {
+    font-size: 40px;
+    color: #fafafa;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+    top: -30px;
+    padding: 10px 20px;
+    z-index: 1;
+}
+
+.section-6 .section-title::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #f0b42f, #b9b09e, #1268a1);
+    z-index: -1;
+    border-radius: 10px;
+    background-size: 200% 200%;
+    animation: gradient-border 3s linear infinite;
+}
+
+@keyframes gradient-border {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.section-6 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 50px;
+}
+
+.section-6 .content p {
+    margin: 10px 0;
+    color: #eea810;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: left;
+    
+}
+
+.section-6 .content h3 {
+    margin: 10px 0;
+    color: #333;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: left;
+}
+
+/* Style untuk icon-skill */
+.icon-skill {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    /* Sesuaikan dengan lebar konten */
+    margin: 0 auto 50px;
+    /* Berikan margin bawah agar konten tidak terlalu rapat */
+    position: relative;
+    z-index: 2;
+    left: 300px;
+    top: -230px;
+}
+
+.icon-skill .icon-title h1 {
+    font-size: 24px;
+    color: #eea810;
+    margin-bottom: 20px;
+}
+
+.icon-skill .icon-category {
+    margin-bottom: 30px;
+}
+
+.icon-skill .icon-category h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #575554;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.icon-skill .img-icon-skill {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: center;
+}
+
+.icon-skill .img-icon-skill img {
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+}
+
+.icon-skill .img-icon-skill img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*=========================*/
+/* Section 6 Styles - Mobile Version */
+/*=========================*/
+
+@media screen and (max-width: 768px) {
+    .section-6 {
+        padding: 50px 10px;
+        height: auto;
+        /* Kurangi padding untuk tampilan mobile */
+    }
+
+    .section-6 .content-wrapper {
+        top: 0;
+        left: 0;
+        padding: 10px;
+        text-align: center;
+        /* Posisikan konten di tengah pada tampilan mobile */
+    }
+
+    .section-6 .section-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+        position: relative;
+        top: 10px;
+        /* Kurangi ukuran font dan margin untuk mobile */
+    }
+
+    .section-6 .section-title::before {
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 8px;
+        /* Sesuaikan ukuran border pada tampilan mobile */
+    }
+
+    .section-6 .content {
+        align-items: center;
+        justify-content: center;
+        /* Posisikan konten di tengah pada mobile */
+    }
+
+    .section-6 .content p {
+        font-size: 20px;
+        text-align: center;
+        /* Kurangi ukuran font dan sesuaikan align pada mobile */
+    }
+
+    .section-6 .content h3 {
+        font-size: 16px;
+        text-align: center;
+        /* Kurangi ukuran font dan sesuaikan align pada mobile */
+    }
+
+    .icon-skill {
+        padding: 30px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Buat icon-skill memenuhi lebar layar pada mobile */
+        box-shadow: #333 !important;
+        height: 550px;
+        /* Hilangkan shadow pada mobile untuk tampilan yang lebih bersih */
+    }
+
+    .icon-skill .icon-title h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        /* Kurangi ukuran font dan margin pada mobile */
+    }
+
+    .icon-skill .icon-category h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        /* Kurangi ukuran font dan margin pada mobile */
+    }
+
+    .icon-skill .img-icon-skill {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        /* Kurangi jumlah kolom grid dan gap pada mobile */
+    }
+
+    .icon-skill .img-icon-skill img {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        left: 15px;
+        /* Kurangi ukuran icon pada mobile */
+    }
+}
+
+
+
+
+.scroll-atas {
+    opacity: 0;
+    transform: translateY(30px);
+    /* Mulai dari posisi lebih rendah */
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-atas.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+    /* Bergerak ke posisi normal */
+}
